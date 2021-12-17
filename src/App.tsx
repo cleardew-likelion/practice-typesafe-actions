@@ -9,7 +9,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUserListThunk());
+    dispatch(fetchUserListThunk(2));
   }, [dispatch]);
 
   return (
