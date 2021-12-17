@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./stores";
-import { fetchUserListThunk } from "./stores/user/thunks";
+import { createUserThunk, fetchUserListThunk } from "./stores/user/thunks";
 import { Container, Card, Text, Image, Pagination } from "@mantine/core";
 
 function App() {
@@ -12,6 +12,14 @@ function App() {
   useEffect(() => {
     dispatch(fetchUserListThunk(activePage));
   }, [dispatch, activePage]);
+
+  const onClick = () => {
+    const data = {
+      name: "John",
+      email: "test@test.com",
+    };
+    dispatch(createUserThunk(data));
+  };
 
   return (
     <div className="App">
@@ -38,6 +46,7 @@ function App() {
           onChange={setPage}
         />
       </Container>
+      <button onClick={onClick}>Create User</button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { createReducer } from "typesafe-actions";
-import { fetchUserList } from "./actions";
+import { createUser, fetchUserList } from "./actions";
 import { IUserAction, IUserList } from "./types";
 
 export const userList = createReducer({}).handleAction(
@@ -8,8 +8,17 @@ export const userList = createReducer({}).handleAction(
   (state: IUserList, action: IUserAction) => action.payload
 );
 
+export const createUserResponse = createReducer({})
+  .handleAction(createUser.success, () => {
+    alert("create user successed!");
+  })
+  .handleAction(createUser.failure, () => {
+    alert("create user failed!");
+  });
+
 const userReducer = combineReducers({
   userList,
+  createUserResponse,
 });
 
 export default userReducer;
